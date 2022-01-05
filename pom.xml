@@ -60,16 +60,24 @@
                 <artifactId>appassembler-maven-plugin</artifactId>
                 <version>1.10</version>
                 <configuration>
+                    <assembleDirectory>target</assembleDirectory>
                     <programs>
                         <program>
                             <mainClass>Main</mainClass>
-                            <id>TelegramCopyPastaBot</id>
+                            <name>TelegramCopyPastaBot</name>
                         </program>
                     </programs>
                 </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>assemble</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
-
 
 </project>

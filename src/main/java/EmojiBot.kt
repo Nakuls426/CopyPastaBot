@@ -34,29 +34,22 @@ class EmojiBot : TelegramLongPollingBot() {
             val b = StringBuilder()
             //val addEmojisToList = ArrayList<String>()
 
-            for (value in array) {
-               // val t = text.split(" ")
+            array.forEach{ _ ->
+                // val t = text.split(" ")
                 val file = File("C:\\Users\\Nakul\\Documents\\NetBeansProjects\\EmojiCopyPastaBot\\EmojiData.json")
                 val reader = BufferedReader(FileReader(file))
                 var st: String?
 
                 while (reader.readLine().also {
                         st = it } != null) {
-                    b.append(st)
-                    // holdDetails.s = b.toString()
+                    b.append(st) // holdDetails.s = b.toString()
                 }
-
                 reader.close()
-
-                /*//val values = arrayListOf("this","a")
-                val ob = JSONObject(b.toString().trim())
-                val ob1: JSONObject = ob.getJSONObject(value.lowercase())
-
-                addEmojisToList.add(ob1.toString())*/
             }
+
             //val values = arrayListOf("this","a")
 
-            val arr = arrayListOf("")
+            //val arr = arrayListOf("")
             array.forEach {
               //  println(it)
                 //val isTooCommon = array.any { it in values }
@@ -73,6 +66,8 @@ class EmojiBot : TelegramLongPollingBot() {
         }
     }
 
+
+
     private fun setModifiedText (data:String,b:StringBuilder) :StringBuilder {
         val start = System.currentTimeMillis()
         val appendText = StringBuilder()
@@ -80,7 +75,6 @@ class EmojiBot : TelegramLongPollingBot() {
         try {
             val ob1: JSONObject = ob.getJSONObject(data.lowercase())
             // Apply operation from left to right on each element.
-
             val hold = data + " " + "${ob1.names().get(getRandomPos(ob1.length()))}" + " "
             return appendText.append(hold)
 
@@ -94,13 +88,6 @@ class EmojiBot : TelegramLongPollingBot() {
         }
         return StringBuilder("$data ")
     }
-    
-    fun returnString (jsonObject: JSONObject,acc:String): String  {
-        if (jsonObject.has(acc)) {
-            return acc
-        }
-    return ""
-    }
 
     override fun onUpdatesReceived(updates: List<Update?>?) = super.onUpdatesReceived(updates)
 
@@ -110,3 +97,22 @@ class EmojiBot : TelegramLongPollingBot() {
 
     //override fun onRegister() = super.onRegister()
 }
+
+/*for (value in array) {
+               // val t = text.split(" ")
+                val file = File("C:\\Users\\Nakul\\Documents\\NetBeansProjects\\EmojiCopyPastaBot\\EmojiData.json")
+                val reader = BufferedReader(FileReader(file))
+                var st: String?
+
+                while (reader.readLine().also {
+                        st = it } != null) {
+                    b.append(st) // holdDetails.s = b.toString()
+                }
+                reader.close()
+
+                *//*//*/val values = arrayListOf("this","a")
+                val ob = JSONObject(b.toString().trim())
+                val ob1: JSONObject = ob.getJSONObject(value.lowercase())
+
+                addEmojisToList.add(ob1.toString())*//*
+            }*/
