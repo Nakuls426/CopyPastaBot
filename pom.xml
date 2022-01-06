@@ -63,7 +63,7 @@
                     <assembleDirectory>target</assembleDirectory>
                     <programs>
                         <program>
-                            <mainClass>Main</mainClass>
+                            <mainClass>EmojiMain</mainClass>
                             <name>TelegramCopyPastaBot</name>
                         </program>
                     </programs>
