@@ -84,7 +84,7 @@ public class EmojiBot extends TelegramLongPollingBot {
         try {
             JSONObject object =obj.getJSONObject(value.toLowerCase(Locale.ROOT));
             String hold = value + " " +object.names().get(getRandomPos(object.length())) + " ";
-            return appendAgain.append(hold);
+            return appendAgain.append(value);
         }catch (Exception e) {
             e.printStackTrace();
         }
