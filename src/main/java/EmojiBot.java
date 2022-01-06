@@ -10,10 +10,10 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.List;
 import java.util.Locale;
 import java.util.Random;
@@ -39,24 +39,18 @@ public class EmojiBot extends TelegramLongPollingBot {
         //    ArrayList<String> stringArrayList = new ArrayList<>();
 
             StringBuilder b = new StringBuilder();
-
             StringBuilder append = new StringBuilder();
-            for (String value : array) {
-                File file = new File("C:\\Users\\Nakul\\Documents\\NetBeansProjects\\EmojiData.json");
-                String st;
-                BufferedReader reader = null;
-                try {
-                   reader = new BufferedReader(new FileReader(file));
-                    while((st = reader.readLine())!= null) {
-                        append.append(st);
-                    }
-                }catch (Exception e) {
-                    e.printStackTrace();
-                }
 
+            for (String value : array) {
                 try {
-                    assert reader != null;
-                    reader.close();
+                    URL url = new URL("https://api.npoint.io/c08bf169dcf80a8e4017");
+                    HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                    String s;
+                    while((s = reader.readLine()) != null) {
+                        append.append(s.trim());
+                    }
+                    connection.disconnect();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -70,13 +64,10 @@ public class EmojiBot extends TelegramLongPollingBot {
             message.setText(b.toString());
             try {
                 execute(message); // Call method to send the message
-            } catch (TelegramApiException ignored) {
-
-            }
+            } catch (TelegramApiException ignored) {}
 
         }
     }
-
 
     private StringBuilder setModifiedText(String value, StringBuilder b) {
         StringBuilder appendAgain = new StringBuilder();
@@ -134,6 +125,26 @@ public class EmojiBot extends TelegramLongPollingBot {
 }
 /*
 
+
+
+                File file = new File("C:\\Users\\Nakul\\Documents\\NetBeansProjects\\EmojiData.json");
+                String st;
+                BufferedReader reader = null;
+                try {
+                   reader = new BufferedReader(new FileReader(file));
+                    while((st = reader.readLine())!= null) {
+                        append.append(st);
+                    }
+                }catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                try {
+                    assert reader != null;
+                    reader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
 
 for (String value1 : hold.getEmojiData().split(",")) {
                 System.out.println(value1);
