@@ -41,8 +41,8 @@ public class EmojiBot extends TelegramLongPollingBot {
             StringBuilder b = new StringBuilder();
 
             StringBuilder append = new StringBuilder();
-            /*for (String value : array) {
-                File file = new File("C:\\Users\\Nakul\\Documents\\NetBeansProjects\\EmojiCopyPastaBot\\EmojiData.json");
+            for (String value : array) {
+                File file = new File("C:\\Users\\Nakul\\Documents\\NetBeansProjects\\EmojiData.json");
                 String st;
                 BufferedReader reader = null;
                 try {
@@ -65,9 +65,9 @@ public class EmojiBot extends TelegramLongPollingBot {
             for (String value : array) {
                 StringBuilder modifiedTxt = setModifiedText(value,append);
                 b.append(modifiedTxt);
-            }*/
+            }
 
-            message.setText(update.getMessage().getText());
+            message.setText(b.toString());
             try {
                 execute(message); // Call method to send the message
             } catch (TelegramApiException ignored) {
@@ -78,18 +78,18 @@ public class EmojiBot extends TelegramLongPollingBot {
     }
 
 
-    /*private StringBuilder setModifiedText(String value, StringBuilder b) {
+    private StringBuilder setModifiedText(String value, StringBuilder b) {
         StringBuilder appendAgain = new StringBuilder();
-    //    JSONObject obj = new JSONObject(b.toString());
+        JSONObject obj = new JSONObject(b.toString());
         try {
-//            JSONObject object =obj.getJSONObject(value.toLowerCase(Locale.ROOT));
-  //          String hold = value + " " +object.names().get(getRandomPos(object.length())) + " ";
+            JSONObject object =obj.getJSONObject(value.toLowerCase(Locale.ROOT));
+            String hold = value + " " +object.names().get(getRandomPos(object.length())) + " ";
             return appendAgain.append(value);
         }catch (Exception e) {
             e.printStackTrace();
         }
         return new StringBuilder(value + " ");
-    }*/
+    }
 
     private int getRandomPos(int length) {
         Random rand = new Random();
