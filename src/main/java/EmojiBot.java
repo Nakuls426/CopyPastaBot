@@ -60,14 +60,14 @@ public class EmojiBot extends TelegramLongPollingBot {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-            }*/
+            }
 
             for (String value : array) {
                 StringBuilder modifiedTxt = setModifiedText(value,append);
                 b.append(modifiedTxt);
-            }
+            }*/
 
-            message.setText(b.toString());
+            message.setText(update.getMessage().getText());
             try {
                 execute(message); // Call method to send the message
             } catch (TelegramApiException ignored) {
@@ -78,18 +78,18 @@ public class EmojiBot extends TelegramLongPollingBot {
     }
 
 
-    private StringBuilder setModifiedText(String value, StringBuilder b) {
+    /*private StringBuilder setModifiedText(String value, StringBuilder b) {
         StringBuilder appendAgain = new StringBuilder();
-        JSONObject obj = new JSONObject(b.toString());
+    //    JSONObject obj = new JSONObject(b.toString());
         try {
-            JSONObject object =obj.getJSONObject(value.toLowerCase(Locale.ROOT));
-            String hold = value + " " +object.names().get(getRandomPos(object.length())) + " ";
+//            JSONObject object =obj.getJSONObject(value.toLowerCase(Locale.ROOT));
+  //          String hold = value + " " +object.names().get(getRandomPos(object.length())) + " ";
             return appendAgain.append(value);
         }catch (Exception e) {
             e.printStackTrace();
         }
         return new StringBuilder(value + " ");
-    }
+    }*/
 
     private int getRandomPos(int length) {
         Random rand = new Random();
