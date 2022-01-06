@@ -41,7 +41,7 @@ public class EmojiBot extends TelegramLongPollingBot {
             StringBuilder b = new StringBuilder();
 
             StringBuilder append = new StringBuilder();
-            for (String value : array) {
+            /*for (String value : array) {
                 File file = new File("C:\\Users\\Nakul\\Documents\\NetBeansProjects\\EmojiCopyPastaBot\\EmojiData.json");
                 String st;
                 BufferedReader reader = null;
@@ -60,7 +60,7 @@ public class EmojiBot extends TelegramLongPollingBot {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-            }
+            }*/
 
             for (String value : array) {
                 StringBuilder modifiedTxt = setModifiedText(value,append);
