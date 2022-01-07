@@ -10,9 +10,9 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
+import javax.net.ssl.HttpsURLConnection;
 import java.io.*;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 import java.util.Locale;
@@ -42,13 +42,13 @@ public class EmojiBot extends TelegramLongPollingBot {
             StringBuilder append = new StringBuilder();
 
             try {
-                URL url = new URL("https://api.npoint.io/c08bf169dcf80a8e4017".trim());
-                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                URL url = new URL("https://api.npoint.io/c08bf169dcf80a8e4017");
+                HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
                 connection.setRequestMethod("GET");
                 BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
                 String s;
                 while ((s = reader.readLine()) != null) {
-                    append.append(s.trim());
+                    append.append(s);
                 }
                 connection.disconnect();
             } catch (IOException e) {
