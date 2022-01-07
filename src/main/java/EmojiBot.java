@@ -48,7 +48,7 @@ public class EmojiBot extends TelegramLongPollingBot {
                 BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
                 String s;
                 while ((s = reader.readLine()) != null) {
-                    append.append(s);
+                    append.append(s.trim());
                 }
                 connection.disconnect();
             } catch (IOException e) {
@@ -70,7 +70,7 @@ public class EmojiBot extends TelegramLongPollingBot {
 
     private StringBuilder setModifiedText(String value, StringBuilder b) {
         StringBuilder appendAgain = new StringBuilder();
-        JSONObject obj = new JSONObject(b.toString());
+        JSONObject obj = new JSONObject(b.toString().trim());
         try {
             JSONObject object =obj.getJSONObject(value.toLowerCase(Locale.ROOT));
             String hold = value + " " +object.names().get(getRandomPos(object.length())) + " ";
