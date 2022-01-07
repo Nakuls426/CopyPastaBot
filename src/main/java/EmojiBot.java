@@ -41,21 +41,18 @@ public class EmojiBot extends TelegramLongPollingBot {
             StringBuilder b = new StringBuilder();
             StringBuilder append = new StringBuilder();
 
-            for (String value : array) {
-                try {
-                    URL url = new URL("https://api.npoint.io/c08bf169dcf80a8e4017".trim());
-                    HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-                    connection.setRequestMethod("GET");
-                    BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-                    String s;
-                    while((s = reader.readLine()) != null) {
-                        System.out.println(s);
-                        append.append(s.trim());
-                    }
-                    connection.disconnect();
-                } catch (IOException e) {
-                    e.printStackTrace();
+            try {
+                URL url = new URL("https://api.npoint.io/c08bf169dcf80a8e4017".trim());
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.setRequestMethod("GET");
+                BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                String s;
+                while ((s = reader.readLine()) != null) {
+                    append.append(s.trim());
                 }
+                connection.disconnect();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
 
             for (String value : array) {
