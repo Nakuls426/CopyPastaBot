@@ -46,7 +46,7 @@ public class EmojiBot extends TelegramLongPollingBot {
                 URL url = new URL("https://api.npoint.io/c08bf169dcf80a8e4017");
                 HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
                 connection.setRequestMethod("GET");
-                BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                BufferedReader reader = new BufferedReader(new InputStreamReader((InputStream) connection.getContent()));
                 String s;
                 while ((s = reader.readLine()) != null) {
                     append.append(s.trim());
@@ -71,14 +71,17 @@ public class EmojiBot extends TelegramLongPollingBot {
 
     private StringBuilder setModifiedText(String value, StringBuilder jsonData) {
         StringBuilder appendText = new StringBuilder();
-        //JSONObject obj = new JSONObject(jsonData.toString().trim());
+        JSONObject obj = new JSONObject(jsonData.toString().trim());
+
         try {
-          //  JSONObject object =obj.getJSONObject(value.toLowerCase(Locale.ROOT));
-            //String hold = value + " " +object.names().get(getRandomPos(object.length())) + " ";
-            return appendText.append(Arrays.toString(jsonData.toString().getBytes()));
-        }catch (Exception e) {
+            JSONObject object = obj.getJSONObject(value.toLowerCase(Locale.ROOT));
+            String hold = value + " " + object.names().get(getRandomPos(object.length())) + " ";
+            return appendText.append(hold);
+        } catch (Exception e) {
             e.printStackTrace();
+
         }
+
         return new StringBuilder(value + " ");
     }
 
