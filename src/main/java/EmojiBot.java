@@ -58,7 +58,7 @@ public class EmojiBot extends TelegramLongPollingBot {
 
             for (String value : array) {
                 StringBuilder modifiedTxt = setModifiedText(value,append);
-                b.append(modifiedTxt);
+                b.append(Arrays.toString(append.toString().getBytes()));
             }
 
             message.setText(b.toString());
