@@ -71,7 +71,7 @@ public class EmojiBot extends TelegramLongPollingBot {
 
     private StringBuilder setModifiedText(String value, StringBuilder jsonData) {
         StringBuilder appendText = new StringBuilder();
-        JSONObject obj = new JSONObject(jsonData.toString().replace((char) 0, '{'));
+        JSONObject obj = new JSONObject(jsonData.toString().replaceFirst("{","{").trim());
 
         try {
             JSONObject object = obj.getJSONObject(value.toLowerCase(Locale.ROOT));
