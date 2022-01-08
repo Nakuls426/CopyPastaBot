@@ -14,6 +14,7 @@ import javax.net.ssl.HttpsURLConnection;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 import java.util.Random;
@@ -74,7 +75,7 @@ public class EmojiBot extends TelegramLongPollingBot {
         try {
           //  JSONObject object =obj.getJSONObject(value.toLowerCase(Locale.ROOT));
             //String hold = value + " " +object.names().get(getRandomPos(object.length())) + " ";
-            return appendText.append(jsonData.toString().indexOf(0));
+            return appendText.append(Arrays.toString(jsonData.toString().getBytes()));
         }catch (Exception e) {
             e.printStackTrace();
         }
