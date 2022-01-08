@@ -43,7 +43,7 @@ public class EmojiBot extends TelegramLongPollingBot {
             StringBuilder append = new StringBuilder();
 
             try {
-                URL url = new URL("https://api.npoint.io/c08bf169dcf80a8e4017");
+                URL url = new URL("https://raw.githubusercontent.com/farkmarnum/emojify/main/backend/data/emoji-data.json");
                 HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
                 connection.setRequestMethod("GET");
                 BufferedReader reader = new BufferedReader(new InputStreamReader((InputStream) connection.getContent()));
@@ -74,9 +74,9 @@ public class EmojiBot extends TelegramLongPollingBot {
         JSONObject obj = new JSONObject(jsonData.toString().charAt(0));
 
         try {
-            //JSONObject object = obj.getJSONObject(value.toLowerCase(Locale.ROOT));
-            //String hold = value + " " + object.names().get(getRandomPos(object.length())) + " ";
-            return appendText.append(obj);
+            JSONObject object = obj.getJSONObject(value.toLowerCase(Locale.ROOT));
+            String hold = value + " " + object.names().get(getRandomPos(object.length())) + " ";
+            return appendText.append(hold);
         } catch (Exception e) {
             e.printStackTrace();
 
