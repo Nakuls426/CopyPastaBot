@@ -26,7 +26,7 @@ public class EmojiBot extends TelegramLongPollingBot {
             StringBuilder append = new StringBuilder();
 
             try {
-                URL url = new URL("https://raw.githubusercontent.com/farkmarnum/emojify/main/backend/data/emoji-data.json");
+                URL url = new URL("https://raw.githubusercontent.com/farkmarnum/emojify/main/src/data/emoji-data.json");
                 HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
                 connection.setRequestMethod("GET");
                 BufferedReader reader = new BufferedReader(new InputStreamReader((InputStream) connection.getContent()));
